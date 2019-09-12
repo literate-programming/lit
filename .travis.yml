@@ -6,3 +6,4 @@ go:
 script:
   - go test -v
   - cd cmd/lit && make bootstrap && make build && make test
+  - cd cmd/lit && make release
