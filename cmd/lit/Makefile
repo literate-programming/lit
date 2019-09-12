@@ -23,6 +23,17 @@ test: build
 	@echo "---"
 	@rm -rf tmp
 
+release:
+	GOOS=darwin GOARCH=386 go build -ldflags "-X main.version=${VERSION}" -o lit_darwin_386
+	GOOS=darwin GOARCH=amd64 go build -ldflags "-X main.version=${VERSION}" -o lit_darwin_amd64
+	GOOS=linux GOARCH=386 go build -ldflags "-X main.version=${VERSION}" -o lit_linux_386
+	GOOS=linux GOARCH=amd64 go build -ldflags "-X main.version=${VERSION}" -o lit_linux_amd64
+	GOOS=linux GOARCH=arm go build -ldflags "-X main.version=${VERSION}" -o lit_linux_arm
+	GOOS=windows GOARCH=386 go build -ldflags "-X main.version=${VERSION}" -o lit_windows_386
+	GOOS=windows GOARCH=amd64 go build -ldflags "-X main.version=${VERSION}" -o lit_windows_amd64
+
 clean:
 	@rm -f lit
 	@rm -f lit-bootstrap
+
+.PHONY: build pre bootstrap test release clean
