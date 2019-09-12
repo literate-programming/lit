@@ -1,3 +1,11 @@
+# at first run the "make bootstrap" command to download the lit cli.
+# this cli we use to transform the "main.go.md" and build the binary.
+# here the two commands to run:
+#
+#   make bootstrap
+#   make build
+#
+
 VERSION=0.3.0
 
 build: pre
@@ -5,12 +13,14 @@ build: pre
 	@go build -ldflags "-X main.version=${VERSION}" -o lit
 
 pre:
-	@echo "pre-processing main.go.md"
+	@echo "pre-processing"
+	@./lit-bootstrap ../../transform.go.md ../../transform.go
 	@./lit-bootstrap main.go.md main.go
 
 bootstrap:
-	@echo "bootstrap lit v${VERSION}..."
-	@go build -ldflags "-X main.version=${VERSION}" -o lit-bootstrap
+	@echo "bootstrap lit"
+	@curl -L https://github.com/literate-programming/lit/releases/download/v0.3.0/lit_darwin_386 > lit-bootstrap
+	@chmod +x lit-bootstrap
 	@./lit-bootstrap version
 
 test: build

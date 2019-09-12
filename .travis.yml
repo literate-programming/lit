@@ -3,10 +3,13 @@ language: go
 go:
   - 1.12
 
+install: echo "nothing to install here..."
+
 script:
-  - go test -v
   - cd cmd/lit
   - make bootstrap
   - make build
   - make test
   - make release
+  - cd ../../
+  - go test -v
