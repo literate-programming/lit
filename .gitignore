@@ -12,3 +12,5 @@
 *.out
 
 /cmd/lit/lit*
+/cmd/lit/main.go
+/transform.go
