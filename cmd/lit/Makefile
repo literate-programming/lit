@@ -17,9 +17,10 @@ pre:
 	@./lit-bootstrap ../../transform.go.md ../../transform.go
 	@./lit-bootstrap main.go.md main.go
 
+UNAME := $(shell uname | awk '{print tolower($0)}')
 bootstrap:
 	@echo "bootstrap lit"
-	@curl -L https://github.com/literate-programming/lit/releases/download/v0.3.0/lit_darwin_386 > lit-bootstrap
+	@curl -L https://github.com/literate-programming/lit/releases/download/v0.3.0/lit_${UNAME}_386 > lit-bootstrap
 	@chmod +x lit-bootstrap
 	@./lit-bootstrap version
 
