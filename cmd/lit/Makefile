@@ -2,6 +2,7 @@
 # this cli we use to transform the "main.go.md" and build the binary.
 # here the two commands to run:
 #
+#   make download-darwin # or download-linux
 #   make bootstrap
 #   make build
 #
@@ -17,11 +18,15 @@ pre:
 	@./lit-bootstrap ../../transform.go.md ../../transform.go
 	@./lit-bootstrap main.go.md main.go
 
-UNAME := $(shell uname | awk '{print tolower($0)}')
+
+download-darwin:
+	@curl -L https://github.com/literate-programming/lit/releases/download/v0.3.0/lit_darwin_386 > lit-bootstrap
+	@chmod +x lit-bootstrap
+download-linux:
+	@curl -L https://github.com/literate-programming/lit/releases/download/v0.3.0/lit_linux_386 > lit-bootstrap
+	@chmod +x lit-bootstrap
 bootstrap:
 	@echo "bootstrap lit"
-	@curl -L https://github.com/literate-programming/lit/releases/download/v0.3.0/lit_${UNAME}_386 > lit-bootstrap
-	@chmod +x lit-bootstrap
 	@./lit-bootstrap version
 
 test: build
