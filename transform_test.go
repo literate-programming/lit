@@ -1,4 +1,4 @@
-package literateprogramming
+package lit
 
 import (
 	"bytes"

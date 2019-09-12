@@ -1,4 +1,4 @@
-package literateprogramming
+package lit
 
 import (
 	"bytes"
@@ -20,6 +20,8 @@ func Transform(code []byte, commentStyle []byte) []byte {
 				if !bytes.HasPrefix(v, tokenTab) {
 					// change each non code line
 					lines[i] = append(commentStyle, v...)
+				} else {
+					lines[i] = bytes.Replace(lines[i], tokenTab, []byte(""), 1)
 				}
 			} else {
 				lines[i] = bytes.Replace(lines[i], tokenCode, []byte(""), 1)
