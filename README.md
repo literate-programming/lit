@@ -12,8 +12,20 @@
 
 ## Installation
 
+**Prebuild binaries**
+
+Go to the [release page](https://github.com/literate-programming/lit/releases/tag/v0.3.0) and download the binary.
+
+**Building from Source**
+
+`lit` is written in [Golang](https://golang.org). You need to install go before you can continue with the next steps.
+
 ```sh
-go get github.com/literate-programming/lit/cmd/lit
+git clone git@github.com:literate-programming/lit.git
+cd cmd/lit
+make download-darwin # or download-linux
+make bootstrap
+make build
 ```
 
 ## Usage
