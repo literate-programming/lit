@@ -7,7 +7,7 @@
 #   make build
 #
 
-VERSION=0.3.0
+VERSION=0.3.1
 
 build: pre
 	@echo "build lit v${VERSION}"
@@ -29,15 +29,14 @@ bootstrap:
 	@echo "bootstrap lit"
 	@./lit-bootstrap version
 
-test: build
-	@./lit version
-	@mkdir -p tmp
+test:
+	@./lit -v
+	@mkdir -p test
 	@echo "build test sample"
-	@./lit sample/sample.go.md tmp/main.go
+	@./lit -n sample/sample.go.md test/main.go
 	@echo "run test sample\n---"
-	@go run tmp/main.go
+	@go run test/main.go
 	@echo "---"
-	@rm -rf tmp
 
 release:
 	GOOS=darwin GOARCH=386 go build -ldflags "-X main.version=${VERSION}" -o lit_darwin_386
@@ -50,6 +49,7 @@ release:
 
 clean:
 	@rm -f lit
-	@rm -f lit-bootstrap
+	@rm -f lit_*
+	@rm -rf test
 
 .PHONY: build pre bootstrap test release clean

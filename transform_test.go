@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestTransform(t *testing.T) {
+func TestTransformWithSpaces(t *testing.T) {
 	code := []byte(`# test code
 
 this is a test string
@@ -18,7 +18,7 @@ this is a test string
       fmt.Println("Hello literate programming")
     }
 `)
-	result := Transform(code, []byte("// "))
+	result := Transform(code, []byte("// "), false)
 	expected := []byte(`// # test code
 
 // this is a test string
@@ -30,6 +30,48 @@ import "fmt"
 func() {
   fmt.Println("Hello literate programming")
 }
+`)
+	if !bytes.Equal(result, expected) {
+		t.Error("result not equal")
+		t.Logf("RESULT: %s", result)
+		t.Logf("EXPECTED: %s", expected)
+	}
+}
+
+func TestTransformWithTabs(t *testing.T) {
+	code := []byte(`# test code
+this is a test string
+
+	echo hello
+`)
+	result := Transform(code, []byte("# "), false)
+	expected := []byte(`# # test code
+# this is a test string
+
+echo hello
+`)
+	if !bytes.Equal(result, expected) {
+		t.Error("result not equal")
+		t.Logf("RESULT: %s", result)
+		t.Logf("EXPECTED: %s", expected)
+	}
+}
+
+func TestTransformWithBackticks(t *testing.T) {
+	code := []byte(`# test code
+this is a test string
+
+` + "```sh" + `
+echo "hello"
+` + "```" + `
+`)
+	result := Transform(code, []byte("# "), false)
+	expected := []byte(`# # test code
+# this is a test string
+
+` + "# ```sh" + `
+echo "hello"
+` + "# ```" + `
 `)
 	if !bytes.Equal(result, expected) {
 		t.Error("result not equal")
