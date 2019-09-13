@@ -15,15 +15,15 @@ build: pre
 
 pre:
 	@echo "pre-processing"
+	@./lit-bootstrap ../../scanner.go.md ../../scanner.go
 	@./lit-bootstrap ../../transform.go.md ../../transform.go
 	@./lit-bootstrap main.go.md main.go
 
-
 download-darwin:
-	@curl -L https://github.com/literate-programming/lit/releases/download/v0.3.0/lit_darwin_386 > lit-bootstrap
+	@curl -L https://github.com/literate-programming/lit/releases/download/v0.3.1/lit_darwin_386 > lit-bootstrap
 	@chmod +x lit-bootstrap
 download-linux:
-	@curl -L https://github.com/literate-programming/lit/releases/download/v0.3.0/lit_linux_386 > lit-bootstrap
+	@curl -L https://github.com/literate-programming/lit/releases/download/v0.3.1/lit_linux_386 > lit-bootstrap
 	@chmod +x lit-bootstrap
 bootstrap:
 	@echo "bootstrap lit"

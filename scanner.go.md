@@ -1,9 +1,14 @@
+# Scanner
+
+```go
 package lit
 
 import (
 	"bytes"
 )
+```
 
+```go
 var (
 	TAB             = []byte("\t")
 	NEWLINE         = []byte("\n")
@@ -11,19 +16,25 @@ var (
 	FOUR_SPACES     = []byte("    ")
 	THREE_BACKTICKS = []byte("```")
 )
+```
 
+```go
 const (
 	TYPE_DOC      = "DOC"
 	TYPE_CODE     = "CODE"
 	TYPE_CODESIGN = "CODESIGN"
 )
+```
 
+```go
 type Token struct {
 	Type  string
 	Decl  string
 	Value []byte
 }
+```
 
+```go
 func Scanner(source []byte) []Token {
 	lines := bytes.Split(source, NEWLINE)
 	tokens := make([]Token, len(lines))
@@ -71,3 +82,4 @@ func Scanner(source []byte) []Token {
 
 	return tokens
 }
+```
