@@ -18,7 +18,7 @@ this is a test string
       fmt.Println("Hello literate programming")
     }
 `)
-	result := Transform(code, []byte("// "))
+	result := Transform(code, []byte("// "), false)
 	expected := []byte(`// # test code
 
 // this is a test string
@@ -44,7 +44,7 @@ this is a test string
 
 	echo hello
 `)
-	result := Transform(code, []byte("# "))
+	result := Transform(code, []byte("# "), false)
 	expected := []byte(`# # test code
 # this is a test string
 
@@ -65,7 +65,7 @@ this is a test string
 echo "hello"
 ` + "```" + `
 `)
-	result := Transform(code, []byte("# "))
+	result := Transform(code, []byte("# "), false)
 	expected := []byte(`# # test code
 # this is a test string
 

@@ -12,5 +12,4 @@ script:
   - make build
   - make test
   - make release
-  - cd ../../
-  - go test -v
+  - cd ../../ && make test
