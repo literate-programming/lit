@@ -6,33 +6,23 @@
 		"bytes"
 	)
 
-Define some variables we use at the `Transform` function
-
-	var (
-		tokenCode    = []byte("    ")
-		tokenTab     = []byte("\t")
-		tokenNewLine = []byte("\n")
-	)
-
 The core of the lit tool is the `Transform` function. At this function we process the given source and comment out all non code lines by the given `commentStyle`.
 
 	func Transform(code []byte, commentStyle []byte) []byte {
-		lines := make([][]byte, 0)
-		lines = bytes.Split(code, tokenNewLine)
-
-		for i, v := range lines {
-			if len(v) != 0 {
-				if !bytes.HasPrefix(v, tokenCode) {
-					if !bytes.HasPrefix(v, tokenTab) {
-						// change each non code line
-						lines[i] = append(commentStyle, v...)
-					} else {
-						lines[i] = bytes.Replace(lines[i], tokenTab, []byte(""), 1)
-					}
-				} else {
-					lines[i] = bytes.Replace(lines[i], tokenCode, []byte(""), 1)
+		tokens := Scanner(code)
+		transformed := make([][]byte, len(tokens))
+		for i := 0; i < len(tokens); i++ {
+			switch tokens[i].Type {
+			case TYPE_DOC, TYPE_CODESIGN:
+				if len(tokens[i].Value) > 0 {
+					transformed[i] = append(commentStyle, tokens[i].Value...)
 				}
+				break
+
+			case TYPE_CODE:
+				transformed[i] = tokens[i].Value
+				break
 			}
 		}
-		return bytes.Join(lines, tokenNewLine)
+		return bytes.Join(transformed, NEWLINE)
 	}
