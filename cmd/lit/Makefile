@@ -15,6 +15,7 @@ build: pre
 
 pre:
 	@echo "pre-processing"
+	@./lit-bootstrap ../../transform.go.md ../../transform.go
 	@./lit-bootstrap main.go.md main.go
 
 
