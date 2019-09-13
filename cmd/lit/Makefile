@@ -27,7 +27,7 @@ download-linux:
 	@chmod +x lit-bootstrap
 bootstrap:
 	@echo "bootstrap lit"
-	@./lit-bootstrap version
+	@./lit-bootstrap -v
 
 test:
 	@./lit -v
