@@ -4,7 +4,10 @@ Homebrew formulae for installing lit cli tool on MacOS.
 
 # Usage
 
-Use the following commands to Tap the Homebrew repository
+## Homebrew-project
+The following requires that a special project be setup on Github to house your brew formulas. This is not currently available but has been provided as information for future expansion. Please refer to the [Direct URL Installation Method](#Direct-URL-Installation) below.
+
+Use the following commands to Tap the Homebrew repository:
 
 ```sh
 brew tap literate-programming/lit
@@ -14,6 +17,13 @@ Then install the `lit-cli` formula
 
 ```sh
 brew install lit-cli
+```
+
+## Direct URL Installation
+Until a specific Homebrew project is setup to house the formula you need to install directly from the URL as follows:
+```
+brew install https://raw.githubusercontent.com/literate-programming/lit/master/Formula/lit-cli.rb
+
 ```
 
 # Testing changes
