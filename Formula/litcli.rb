@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-class litcli < Formula
+class Litcli < Formula
   desc "The universal literate programming tool"
   homepage "https://github.com/literate-programming/lit"
   url "https://github.com/literate-programming/lit/releases/download/v0.3.1/lit_darwin_386"
