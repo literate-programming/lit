@@ -30,6 +30,6 @@ class Litcli < Formula
   bottle :unneeded
 
   def install
-    bin.install "lit-cli"
+    bin.install "lit"
   end
 end
