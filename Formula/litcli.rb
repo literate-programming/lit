@@ -30,7 +30,7 @@ class Litcli < Formula
   bottle :unneeded
 
   def install
-    mv bin/"lit_darwin_386", bin/"lit"
+    mv "lit_darwin_386", "lit"
     bin.install "lit"
   end
 end
