@@ -12,6 +12,4 @@
 *.out
 
 /cmd/lit/lit*
-/cmd/lit/main.go
 /cmd/lit/test
-/transform.go
