@@ -1,8 +1,6 @@
 name: CI
 on:
   push:
-    tags:
-      - '*'
   pull_request:
 
 jobs:
@@ -26,12 +24,3 @@ jobs:
 
       - name: Build
         run: cd cmd/lit && go build -v
-      
-      - name: Releaser
-        uses: goreleaser/goreleaser-action@v2
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          version: latest
-          args: release --rm-dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
