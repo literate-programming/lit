@@ -13,3 +13,4 @@
 
 /cmd/lit/lit*
 /cmd/lit/test
+/dist

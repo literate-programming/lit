@@ -9,13 +9,17 @@ import (
 	"github.com/literate-programming/lit"
 )
 
-var version = "dev"
+var (
+	version = "dev"
+	commit  = "none"
+	date    = "unknown"
+)
 
 func usage() {
 	fmt.Printf("\n")
 	fmt.Printf("  +--------+\n")
 	fmt.Printf("  | ---    |\n")
-	fmt.Printf("  | ---    |  lit v%s - literate preprocessor\n", version)
+	fmt.Printf("  | ---    |  lit %s - literate preprocessor\n", version)
 	fmt.Printf("  |   ---  |  --- ------ - ---------------------\n")
 	fmt.Printf("  |   ---  |\n")
 	fmt.Printf("  | ---    |\n")
@@ -42,7 +46,9 @@ func main() {
 	totalArgs := flag.NArg()
 
 	if *flagVersion {
-		fmt.Println("v" + version)
+		fmt.Printf("version:  %s\n", version)
+		fmt.Printf("commit:   %s\n", commit)
+		fmt.Printf("built at: %s\n", date)
 		os.Exit(0)
 	}
 	if totalArgs == 0 {
