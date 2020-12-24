@@ -2,7 +2,7 @@
 
 the cli is really lightweight and small in implementation.
 
-at first we check if the first arg is `version`. if it ism then print the version of the tool to `stdout`
+at first we check if the first arg is `version`. If it is then print the version of the tool to `stdout`
 
 	package main
 
